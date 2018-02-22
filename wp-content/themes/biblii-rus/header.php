@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="<?php bloginfo("template_directory");?>/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Библия на канале Экзегет.рус </title>
+    <title><?php bloginfo('name');?> | <?php bloginfo('description');?> </title>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!--if lt IE 9
     script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
@@ -46,21 +46,21 @@
               <p class="designation" style="font-family: Cuprum;">Версии, переводы, архивы</p>
             </div>
           </div>
-          <!-- Sidebar Menu-->
+          <!--Sidebar Menu-->
         <ul class="sidebar-menu">
               <li><a href="/"><i class="fa fa-dashboard"></i><span>Главная</span></a></li>
-              <li><a href="/bible"><i class="fa fa-file-text"></i><span> Библия</span></a></li>
-			        <li><a href="/sermon"><i class="fa fa-pie-chart"></i><span> Проповеди</span></a></li>
-			        <li><a href="/exegesis"><i class="fa fa-edit"></i><span> Толкования Библии</span></a></li>
-			        <li><a href="/dictionaries"><i class="fa fa-th-list"></i><span> Словари</span></a></li>
-			        <li><a href="/maps"><i class="fa fa-circle-o"></i><span> Карты</span></a></li>
-			        <li><a href="/medialib"><i class="fa fa-share"></i><span> Медиатека</span></a></li>
+              <li><a href="/bibliya"><i class="fa fa-file-text"></i><span> Библия</span></a></li>
+			        <li><a href="/tolkovaniya-biblii"><i class="fa fa-edit"></i><span> Толкования Библии</span></a></li>
+			        <li><a href="/propovedi"><i class="fa fa-pie-chart"></i><span> Проповеди</span></a></li>
+			        <li><a href="/slovari"><i class="fa fa-th-list"></i><span> Словари</span></a></li>
+			        <li><a href="/karty"><i class="fa fa-circle-o"></i><span> Карты</span></a></li>
+			        <li><a href="/mediateka"><i class="fa fa-share"></i><span> Медиатека</span></a></li>
               <li class="treeview"><a href="#"><i class="fa fa-file-text"></i><span>Об этом проекте</span><i class="fa fa-angle-right"></i></a>
                   <ul class="treeview-menu">
-                      <li><a href="/history"><i class="fa fa-circle-o"></i> История проекта</a></li>
-				              <li><a href="/authors"><i class="fa fa-circle-o"></i> Авторы и благотворители</a></li>
-				              <li><a href="/real_history"><i class="fa fa-circle-o"></i> Настоящая история проекта</a></li>
-				              <li><a href="/donations"><i class="fa fa-circle-o"></i> Пожертвования</a></li>
+                      <li><a href="/istoriya-proekta"><i class="fa fa-circle-o"></i> История проекта</a></li>
+				              <li><a href="/avtory"><i class="fa fa-circle-o"></i> Авторы и благотворители</a></li>
+				              <li><a href="/realnaya-istoriya"><i class="fa fa-circle-o"></i> Настоящая история проекта</a></li>
+				              <li><a href="/pozhertvovaniya"><i class="fa fa-circle-o"></i> Пожертвования</a></li>
                   </ul>
               </li>
           </ul>
@@ -73,12 +73,13 @@
             <h1 style="font-family: Marmelad;"><i class="fa fa-dashboard"></i> Все версии Библии</h1>
             <p style="font-family: Marmelad;">Библия, Евангелие, Экзегеты, Словари</p>
           </div>
-          <div>
+          <!--div>
             <ul class="breadcrumb">
               <li><i class="fa fa-home fa-lg"></i></li>
               <li>Главная</li>
             </ul>
-          </div>
+          </div-->
+         <?php if (function_exists('dimox_breadcrumbs')) dimox_breadcrumbs(); ?>
         </div>
 <!--===================================================================->
 <!------><div class="row"><!------------------>

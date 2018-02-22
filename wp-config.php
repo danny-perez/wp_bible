@@ -1,4 +1,8 @@
 <?php
+
+// Configuration common to all environments
+include_once __DIR__ . '/wp-config.common.php';
+
 /**
  * Основные параметры WordPress.
  *
@@ -20,6 +24,7 @@
 
 // ** Параметры MySQL: Эту информацию можно получить у вашего хостинг-провайдера ** //
 /** Имя базы данных для WordPress */
+define('REVISR_GIT_PATH', ''); // Added by Revisr
 define('DB_NAME', 'wp');
 
 /** Имя пользователя MySQL */
@@ -78,6 +83,7 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 
+define('VP_ENVIRONMENT', 'default');
 /* Это всё, дальше не редактируем. Успехов! */
 
 /** Абсолютный путь к директории WordPress. */
