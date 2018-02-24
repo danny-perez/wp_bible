@@ -402,3 +402,33 @@ echo '</div><!-- .breadcrumbs -->';
 }
 
 } // end dimox_breadcrumbs()
+//=================================users ajax handler=======================================
+	add_action( 'wp_ajax_my_action', 'my_action_callback' ); 
+	add_action( 'wp_ajax_nopriv_my_action', 'my_action_callback' );
+	function my_action_callback()
+	{
+		$testament = $_REQUEST['testament'];
+		global $wpdb3;
+        $wpdb3 = new wpdb( 'root2', 'E200847', 'wp_ekzeget', 'localhost' );
+        if( ! empty($wpdb3->error) ) wp_die( $wpdb3->error );
+        $results = $wpdb3->get_results("SELECT `name`,`kn` FROM `new_book` WHERE `testament` = $testament");
+        $send_frontend = wp_json_encode($results);
+        echo $send_frontend;
+		wp_die(); // Необходим для прекращения и возврата ответа
+	}
+	//=================================users ajax handler=======================================
+	add_action( 'wp_ajax_my_action1', 'my_action_callback1' ); 
+	add_action( 'wp_ajax_nopriv_my_action1', 'my_action_callback1' );
+	function my_action_callback1()
+	{
+		$book = $_REQUEST['book'];
+		global $wpdb3;
+        $wpdb3 = new wpdb( 'root2', 'E200847', 'wp_ekzeget', 'localhost' );
+        if( ! empty($wpdb3->error) ) wp_die( $wpdb3->error );
+        $results = $wpdb3->get_results("SELECT * FROM `new_book` WHERE `kn` LIKE '$book'");
+        $r_c = $results[0]->chapter;
+        for($i=1;$i<=$r_c;$i++) $results_chap[$i]=$i;
+        $send_frontend = wp_json_encode($results_chap);
+        echo $send_frontend;
+		wp_die(); // Необходим для прекращения и возврата ответа
+	}

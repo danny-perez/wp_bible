@@ -46,6 +46,85 @@
 
       $('#demoSelect').select2();
       $('#demoSelect2').select2();
+      //=======================================================================
+      //===========================users code==================================
+      //=======================================================================
+    $("#select_testament").on("change",function(e){
+        var res_testament = $(this).val();
+        var data = {
+		    		'action': 'my_action',
+			    	'testament': res_testament,
+			    	'book': null,
+			    	'chapter': null,
+			    	'ekzeget':null,
+			    	'translate':null
+			        };
+		var ajax_url = '/wp-admin/admin-ajax.php';
+		jQuery.post(ajax_url, data, function(response)
+			{
+				res = response;
+				var out_data = JSON.parse(res);
+				// console.log(out_data);
+				$("#select_book").empty();
+				$("#select_book").append( $('<option disabled selected>Выберите книгу</option>') );
+				$.each(out_data, function(key, value) {   
+                                                         $('#select_book')
+                                                             .append($("<option></option>")
+                                                             .attr("value",value['kn'])
+                                                             .text(value['name'])); 
+                                                           });
+			})
+        })
+    $("#select_book").on("change",function(e){
+        var res_book = $(this).val();
+        var data = {
+		    		'action': 'my_action1',
+			    	'testament': null,
+			    	'book': res_book,
+			    	'chapter': null,
+			    	'ekzeget':null,
+			    	'translate':null
+			        };
+		var ajax_url = '/wp-admin/admin-ajax.php';
+		jQuery.post(ajax_url, data, function(response)
+			{
+				res = response;
+				var out_data = JSON.parse(res);
+				//console.log(out_data);
+				$("#select_chapter").empty();
+				$("#select_chapter").append( $('<option disabled selected>Выберите главу</option>') );
+				$.each(out_data, function(key, value) {   
+                                                         $('#select_chapter')
+                                                             .append($("<option></option>")
+                                                             .attr("value",key)
+                                                             .text(value)); 
+                                                           });
+			})
+    })
+    $("#select_chapter").on("change",function(e){
+          console.log("Select chapter");
+    })
+    $("#select_ekzeget").on("change",function(e){
+          console.log("Select ekzeget");
+    })
+    $("#select_translate").on("change",function(e){
+          console.log("Select translate");
+    })
+    $("#audio1").on("click",function(e){
+      console.log("Button audio1");
+    })
+    $("#audio2").on("click",function(e){
+      console.log("Button audio2");
+    })
+    $("#prev").on("click",function(e){
+      console.log("Button preview");
+    })
+    $("#next").on("click",function(e){
+      console.log("Button next");
+    })
+    $("#parallel").on("click",function(e){
+      console.log("Button parallel");
+    })
     </script>
   </body>
 </html>
