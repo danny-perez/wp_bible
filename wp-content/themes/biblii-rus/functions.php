@@ -402,7 +402,7 @@ echo '</div><!-- .breadcrumbs -->';
 }
 
 } // end dimox_breadcrumbs()
-//=================================users ajax handler=======================================
+//=================================users ajax handler book=======================================
 	add_action( 'wp_ajax_my_action', 'my_action_callback' ); 
 	add_action( 'wp_ajax_nopriv_my_action', 'my_action_callback' );
 	function my_action_callback()
@@ -416,7 +416,7 @@ echo '</div><!-- .breadcrumbs -->';
         echo $send_frontend;
 		wp_die(); // Необходим для прекращения и возврата ответа
 	}
-	//=================================users ajax handler=======================================
+	//=================================users ajax handler chapter=======================================
 	add_action( 'wp_ajax_my_action1', 'my_action_callback1' ); 
 	add_action( 'wp_ajax_nopriv_my_action1', 'my_action_callback1' );
 	function my_action_callback1()
@@ -429,6 +429,23 @@ echo '</div><!-- .breadcrumbs -->';
         $r_c = $results[0]->chapter;
         for($i=1;$i<=$r_c;$i++) $results_chap[$i]=$i;
         $send_frontend = wp_json_encode($results_chap);
+        echo $send_frontend;
+		wp_die(); // Необходим для прекращения и возврата ответа
+	}
+	//=================================users ajax handler text book=======================================
+	add_action( 'wp_ajax_my_action2', 'my_action_callback2' ); 
+	add_action( 'wp_ajax_nopriv_my_action2', 'my_action_callback2' );
+	function my_action_callback2()
+	{
+		$book = $_REQUEST['book'];
+		$chapter = $_REQUEST['chapter'];
+		$translate = $_REQUEST['translate'];
+		global $wpdb4;
+        $wpdb4 = new wpdb( 'root2', 'E200847', 'wp_stih', 'localhost' );
+        if( ! empty($wpdb4->error) ) wp_die( $wpdb4->error );
+        $name_table = 'stih_'.$book.$chapter;
+        $results = $wpdb4->get_results("SELECT `st_no`,`$translate` FROM `$name_table` WHERE 1");
+        $send_frontend = wp_json_encode($results);
         echo $send_frontend;
 		wp_die(); // Необходим для прекращения и возврата ответа
 	}

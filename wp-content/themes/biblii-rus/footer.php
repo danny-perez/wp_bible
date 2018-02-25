@@ -102,13 +102,71 @@
 			})
     })
     $("#select_chapter").on("change",function(e){
-          console.log("Select chapter");
+        var chapter = $(this).val();
+        var res_book = $('#select_book').val();
+        var translate = $('#select_translate').val();
+        var data = {
+		    		'action': 'my_action2',
+			    	'testament': null,
+			    	'book': res_book,
+			    	'chapter': chapter,
+			    	'ekzeget':null,
+			    	'translate':translate
+			        };
+		var ajax_url = '/wp-admin/admin-ajax.php';
+		jQuery.post(ajax_url, data, function(response)
+			{
+				res = response;
+				var out_data = JSON.parse(res);
+				$('#out_text_result').empty();
+				$.each(out_data, function(key, value) {   
+                                                         var text_for_out = value[translate];
+                                                         var key_for_out = value['st_no'];
+                                                         $('#out_text_result')
+                                                             .append($("<sup></sup>")
+                                                             .text(key_for_out)); 
+                                                         $('#out_text_result')
+                                                             .append($("<span class='one_br'></span>")
+                                                             .html(text_for_out));
+                                                             
+                                                           });
+
+			})
     })
     $("#select_ekzeget").on("change",function(e){
           console.log("Select ekzeget");
     })
     $("#select_translate").on("change",function(e){
-          console.log("Select translate");
+            var translate = $(this).val();
+        var res_book = $('#select_book').val();
+        var chapter = $('#select_chapter').val();
+        var data = {
+		    		'action': 'my_action2',
+			    	'testament': null,
+			    	'book': res_book,
+			    	'chapter': chapter,
+			    	'ekzeget':null,
+			    	'translate':translate
+			        };
+		var ajax_url = '/wp-admin/admin-ajax.php';
+		jQuery.post(ajax_url, data, function(response)
+			{
+				res = response;
+				var out_data = JSON.parse(res);
+				$('#out_text_result').empty();
+				$.each(out_data, function(key, value) {   
+                                                         var text_for_out = value[translate];
+                                                         var key_for_out = value['st_no'];
+                                                         $('#out_text_result')
+                                                             .append($("<sup></sup>")
+                                                             .text(key_for_out)); 
+                                                         $('#out_text_result')
+                                                             .append($("<span class='one_br'></span>")
+                                                             .html(text_for_out));
+                                                             
+                                                           });
+
+			})
     })
     $("#audio1").on("click",function(e){
       console.log("Button audio1");
