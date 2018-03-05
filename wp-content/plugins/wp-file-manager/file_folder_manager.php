@@ -4,7 +4,7 @@
   Plugin URI: https://wordpress.org/plugins/wp-file-manager
   Description: Manage your WP files.
   Author: mndpsingh287
-  Version: 1.9
+  Version: 2.0
   Author URI: https://profiles.wordpress.org/mndpsingh287
   License: GPLv2
 **/
@@ -44,6 +44,8 @@ if(!class_exists('mk_file_folder_manager')):
 			);
 			/* Only for admin */
 			add_submenu_page( 'wp_file_manager', __( 'Settings', 'wp-file-manager' ), __( 'Settings', 'wp-file-manager' ), 'manage_options', 'wp_file_manager_settings', array(&$this, 'wp_file_manager_settings'));
+			/* Only for admin */
+			add_submenu_page( 'wp_file_manager', __( 'Root Directory', 'wp-file-manager' ), __( 'Root Directory', 'wp-file-manager' ), 'manage_options', 'wp_file_manager_root', array(&$this, 'wp_file_manager_root'));
 			/* Only for admin */
 			add_submenu_page( 'wp_file_manager', __( 'System Properties', 'wp-file-manager' ), __( 'System Properties', 'wp-file-manager' ), 'manage_options', 'wp_file_manager_properties', array(&$this, 'wp_file_manager_properties'));
 			/* Only for admin */
@@ -92,6 +94,15 @@ if(!class_exists('mk_file_folder_manager')):
 		{
 			if(is_admin()):		  
 			 include('inc/contribute.php');
+			endif;
+		}
+		/*
+		 Root
+		*/
+		public function wp_file_manager_root()
+		{
+			if(is_admin()):		  
+			 include('inc/root.php');
 			endif;
 		}
 		/* Admin  Things */
@@ -152,8 +163,12 @@ if(!class_exists('mk_file_folder_manager')):
 		*/
 		public function mk_file_folder_manager_action_callback()
 		{
-			 $mk_restrictions = array();
-			 		
+			 $path = ABSPATH;
+			 $settings = get_option('wp_file_manager_settings');	
+			 if(isset($settings['public_path']) && !empty($settings['public_path'])) {
+			  $path = $settings['public_path'];
+		     }
+			 $mk_restrictions = array();			 		
 			 $mk_restrictions[] = array(
 								  'pattern' => '/.tmb/',
 								   'read' => false,
@@ -176,7 +191,7 @@ if(!class_exists('mk_file_folder_manager')):
 					   'roots' => array(
 						array(
 							'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-							'path'          => ABSPATH, // path to files (REQUIRED)
+							'path'          => $path, // path to files (REQUIRED)
 							'URL'           => site_url(), // URL to files (REQUIRED)
 							'uploadDeny'    => array(),                // All Mimetypes not allowed to upload
 							'uploadAllow'   => array('image', 'text/plain'),// Mimetype `image` and `text/plain` allowed to upload

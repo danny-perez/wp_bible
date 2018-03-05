@@ -17,7 +17,8 @@ $this->load_help_desk();
 </div>
 
 <div class="wp_fm_lang" style="float:right">
-<h2><select name="theme" id="fm_theme">
+<h2>
+<select name="theme" id="fm_theme">
 <option value="light" <?php echo (isset($_GET['theme']) && $_GET['theme'] == 'light') ? 'selected="selected"' : ($wp_fm_theme !== false) && $wp_fm_theme == 'light' ? 'selected="selected"' : '';?>><?php  _e('Light - Default', 'wp-file-manager'); ?></option>
 <?php foreach($this->get_themes() as $theme) { ?>
 <option value="<?php echo $theme;?>" <?php echo (isset($_GET['theme']) && $_GET['theme'] == $theme) ? 'selected="selected"' : ($wp_fm_theme !== false) && $wp_fm_theme == $theme ? 'selected="selected"' : '';?>><?php echo ucfirst($theme);?></option>

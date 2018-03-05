@@ -14,6 +14,20 @@
 <!------------------------------->
 <!------></div><!---------------->
 <!--===================================================================->
+ <!-- Side-Nav-->
+      <aside class="main-sidebar-right hidden-print">
+        <section class="sidebar">
+          <div class="user-panel">
+            <div class="pull-left image"><img class="img-circle" src="<?php bloginfo("template_directory");?>/images/logomini.png" alt="User Image"></div>
+            <div class="pull-left info">
+              <p style="font-family: Comfortaa;">Все о Библии</p>
+              <p class="designation" style="font-family: Cuprum;">Версии, переводы, архивы</p>
+            </div>
+          </div>
+          <!--Sidebar Menu-->
+        </section>
+      </aside>
+      <!----------------------------------------->
       </div>
 	  <!----------------------------------------------------------->
 	  <!----------------------------------------------------------->
